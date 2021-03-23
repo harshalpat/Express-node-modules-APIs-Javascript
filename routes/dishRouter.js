@@ -5,6 +5,7 @@ const dishRouter = express.Router();
 
 dishRouter.use(bodyParser.json());
 
+// '/dishes' API end points.
 dishRouter.route('/')
 .all((req, res, next) => {
     res.statusCode = 200;
@@ -12,7 +13,7 @@ dishRouter.route('/')
     next();
 })
 .get((req, res , next) => {
-    res.end('Will send all the dished to you!');
+    res.end('Will send all the dishes to you!');
 })
 .post((req, res, next) => {
     res.end('Will create a dish: ' + req.body.name + ' with details ' + req.body.description);
@@ -21,13 +22,12 @@ dishRouter.route('/')
     res.statusCode = 403;
     res.end('PUT operation not supported on the /dishes ');
 })
-
 .delete((req, res, next) => {
     res.end('Deleting all the dishes..');
 });
 
-// '/dishes/:dishId'
-dishRouter.route('/dishes/:dishId')
+// '/dishes/:dishId' API endpoints
+dishRouter.route('/:dishId')
 .get( (req, res , next) => {
     res.end('Will send all the details of the dish: ' + req.params.dishId 
      + ' to you');
